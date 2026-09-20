@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sweet Cake Shop</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff5f7;
+    color: #333;
+}
+
+header {
+    background-color: #d6336c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+    font-weight: bold;
+}
+
+/* Pseudo-class :hover */
+
+nav a:hover {
+    color: #ffe066;
+}
+
+.cake-card {
+    width: 220px;
+    background-color: white;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    text-align: center;
+
+    /* Rounded corners */
+    border-radius: 20px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.cake-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+
+    /* Different corner radius */
+    border-radius: 15px 40px 15px 40px;
+}
+
+.hero {
+    height: 350px;
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+
+    /*
+       Multiple backgrounds:
+       1. Linear gradient
+       2. Cake image
+    */
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.45),
+            rgba(0,0,0,0.45)
+        ),
+        url("file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg");
+
+    /* Background size */
+    background-size: cover, cover;
+
+    background-position: center, center;
+
+    background-repeat: no-repeat;
+}
+
+.hero h2 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.hero p {
+    font-size: 20px;
+}
+
+
+.special-offer {
+
+    width: 80%;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background-color: #fff0f5;
+
+    /*
+       Border Image
+    */
+
+    border: 20px solid transparent;
+
+    border-image:
+        url("file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg.jpg")
+        30 round;
+}
+
+.special-offer h2 {
+    color: #d6336c;
+}
+
+.products {
+    text-align: center;
+    padding: 30px;
+}
+
+.cake-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d6336c;
+    cursor: pointer;
+}
+
+/*
+   The + selector selects the image
+   immediately after .cake-name.
+*/
+
+.cake-name + .cake-image {
+
+    opacity: 0.5;
+
+    transition: opacity 0.4s ease;
+}
+
+/*
+   When cake name is hovered,
+   the next image becomes fully visible.
+*/
+
+.cake-name:hover + .cake-image {
+
+    opacity: 1;
+}
+
+button {
+
+    background-color: #d6336c;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    margin-top: 10px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+}
+
+button:hover {
+
+    background-color: #a61e4d;
+}
+
+table {
+
+    width: 80%;
+
+    margin: 30px auto;
+
+    border-collapse: collapse;
+
+    background-color: white;
+}
+
+th {
+
+    background-color: #d6336c;
+
+    color: white;
+
+    padding: 12px;
+}
+
+td {
+
+    padding: 12px;
+
+    text-align: center;
+
+    border: 1px solid #ddd;
+}
+
+
+/*
+   Odd rows
+*/
+
+table tr:nth-child(odd) {
+
+    background-color: #ffe5ec;
+}
+
+
+/*
+   Even rows
+*/
+
+table tr:nth-child(even) {
+
+    background-color: white;
+}
+
+
+/*
+   Hover effect
+*/
+
+table tr:hover {
+
+    background-color: #ffe066;
+}
+
+.order-form {
+
+    width: 50%;
+
+    margin: 40px auto;
+
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.order-form h2 {
+
+    text-align: center;
+
+    color: #d6336c;
+}
+
+.order-form input,
+.order-form select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin: 10px 0;
+
+    border: 2px solid #ccc;
+
+    border-radius: 10px;
+}
+
+
+/* :focus */
+
+.order-form input:focus {
+
+    border-color: #d6336c;
+
+    background-color: #fff0f5;
+
+    outline: none;
+}
+
+
+/* :required */
+
+.order-form input:required {
+
+    border-left: 5px solid #ff8787;
+}
+
+
+/* :valid */
+
+.order-form input:valid {
+
+    border-color: green;
+}
+
+
+/* :invalid */
+
+.order-form input[type="email"]:invalid {
+
+    color: red;
+}
+
+
+footer {
+
+    background-color: #d6336c;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 15px;
+
+    margin-top: 40px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .cake-card {
+
+        width: 90%;
+
+        margin: 15px auto;
+
+        display: block;
+    }
+
+    .order-form {
+
+        width: 90%;
+    }
+
+    nav a {
+
+        display: block;
+
+        margin: 10px;
+    }
+
+    .hero h2 {
+
+        font-size: 28px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    header h1 {
+
+        font-size: 26px;
+    }
+
+    .hero {
+
+        height: 300px;
+
+        padding: 80px 15px;
+    }
+
+    .hero h2 {
+
+        font-size: 22px;
+    }
+
+    table {
+
+        width: 95%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1> Sweet Cake Shop</h1>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#cakes">Cakes</a>
+
+        <a href="#prices">Prices</a>
+
+        <a href="#order">Order Now</a>
+
+    </nav>
+
+</header>
+
+<section class="hero" id="home">
+
+    <h2>
+        Delicious Cakes for Every Celebration!
+    </h2>
+
+    <p>
+        Fresh • Sweet • Beautifully Designed
+    </p>
+
+    <button>
+        Shop Now
+    </button>
+
+</section>
+
+
+<section class="special-offer">
+
+    <h2> Special Offer!</h2>
+
+    <p>
+        Get 20% OFF on your first cake order.
+    </p>
+
+</section>
+
+
+<section class="products" id="cakes">
+
+    <h2>Our Delicious Cakes</h2>
+
+    <p>
+        Choose your favourite cake and make
+        your celebration special!
+    </p>
+
+
+    <!-- CHOCOLATE CAKE -->
+
+    <div class="cake-card">
+
+        <div class="cake-name">
+            Chocolate Cake
+        </div>
+
+        <img
+            class="cake-image"
+            src="file:///C:/Users/aksha/OneDrive/Pictures/cake2.jpg"
+            alt="Chocolate Cake"
+        >
+
+        <p>
+            Rich and creamy chocolate cake.
+        </p>
+
+        <p>
+            <b>Price: ₹500</b>
+        </p>
+
+        <button>
+            Add to Cart
+        </button>
+
+    </div>
+
+
+
+    <div class="cake-card">
+
+        <div class="cake-name">
+            Strawberry Cake
+        </div>
+
+        <img
+            class="cake-image"
+            src="file:///C:/Users/aksha/OneDrive/Pictures/cake3.jpg.jpg"
+            alt="Strawberry Cake"
+        >
+
+        <p>
+            Fresh strawberry cream cake.
+        </p>
+
+        <p>
+            <b>Price: ₹600</b>
+        </p>
+
+        <button>
+            Add to Cart
+        </button>
+
+    </div>
+
+
+    <!-- BLACK FOREST CAKE -->
+
+    <div class="cake-card">
+
+        <div class="cake-name">
+            Black Forest Cake
+        </div>
+
+        <img
+            class="cake-image"
+            src="file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg.jpg"
+            alt="Black Forest Cake"
+        >
+
+        <p>
+            Classic chocolate and cherry cake.
+        </p>
+
+        <p>
+            <b>Price: ₹700</b>
+        </p>
+
+        <button>
+            Add to Cart
+        </button>
+
+    </div>
+
+</section>
+
+<section id="prices">
+
+    <h2 style="text-align:center;">
+        Cake Price List
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Cake Name</th>
+
+            <th>Size</th>
+
+            <th>Price</th>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Chocolate Cake</td>
+
+            <td>1 Kg</td>
+
+            <td>₹500</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Strawberry Cake</td>
+
+            <td>1 Kg</td>
+
+            <td>₹600</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Black Forest Cake</td>
+
+            <td>1 Kg</td>
+
+            <td>₹700</td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Vanilla Cake</td>
+
+            <td>1 Kg</td>
+
+            <td>₹450</td>
+
+        </tr>
+
+    </table>
+
+</section>
+
+
+<section class="order-form" id="order">
+
+    <h2>
+        Order Your Cake
+    </h2>
+
+    <form>
+
+        <input
+            type="text"
+            placeholder="Enter Your Name"
+            required
+        >
+
+
+        <input
+            type="email"
+            placeholder="Enter Your Email"
+            required
+        >
+
+
+        <input
+            type="tel"
+            placeholder="Enter Your Phone Number"
+            required
+        >
+
+
+        <select required>
+
+            <option value="">
+                Select Your Cake
+            </option>
+
+            <option>
+                Chocolate Cake
+            </option>
+
+            <option>
+                Strawberry Cake
+            </option>
+
+            <option>
+                Black Forest Cake
+            </option>
+
+            <option>
+                Vanilla Cake
+            </option>
+
+        </select>
+
+
+        <input
+            type="number"
+            placeholder="Quantity"
+            min="1"
+            required
+        >
+
+
+        <button type="submit">
+            Place Order
+        </button>
+
+    </form>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Sweet Cake Shop |
+        Fresh Cakes Made With Love
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
