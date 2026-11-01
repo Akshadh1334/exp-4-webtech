@@ -1,698 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sweet Cake Shop</title>
-
+<title>Sweet Delights - Online Cake Shop</title>
 <style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
+  body {
     font-family: Arial, sans-serif;
-    background-color: #fff5f7;
-    color: #333;
-}
+    margin: 0;
+    background-color: #fff8f3;
+    color: #4a2c2a;
+  }
 
-header {
-    background-color: #d6336c;
-    color: white;
+  /* 3 + 4. MULTIPLE BACKGROUNDS with BACKGROUND-SIZE */
+  header {
+    text-align: center;
+    padding: 60px 20px;
+    color: #fff;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.6) 3px, transparent 4px),
+      linear-gradient(135deg, #ff758c, #ff7eb3);
+    background-size: 30px 30px, cover;
+    background-repeat: repeat, no-repeat;
+    background-position: left top, center;
+  }
+  header h1 { margin: 0; font-size: 42px; }
+
+  /* 1. ROUNDED CORNERS (one value) + 5. :hover */
+  nav { background-color: #4a2c2a; text-align: center; padding: 10px; }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 6px;
+    padding: 8px 16px;
+    display: inline-block;
+    border-radius: 20px;
+  }
+  nav a:hover { background-color: #ff758c; }
+
+  section { max-width: 900px; margin: 30px auto; padding: 0 15px; }
+  h2 { text-align: center; color: #d6336c; }
+
+  /* 1. ROUNDED CORNERS (four values: TL TR BR BL) */
+  .special {
+    background-color: #ffe3ec;
     padding: 20px;
     text-align: center;
-}
+    border: 2px solid #d6336c;
+    border-radius: 15px 50px 30px 5px;
+  }
 
-header h1 {
-    margin: 0;
-    font-size: 36px;
-}
-
-nav {
-    margin-top: 15px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 15px;
-    font-weight: bold;
-}
-
-/* Pseudo-class :hover */
-
-nav a:hover {
-    color: #ffe066;
-}
-
-.cake-card {
-    width: 220px;
-    background-color: white;
-    padding: 15px;
-    margin: 15px;
-    display: inline-block;
-    text-align: center;
-
-    /* Rounded corners */
-    border-radius: 20px;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.cake-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-
-    /* Different corner radius */
-    border-radius: 15px 40px 15px 40px;
-}
-
-.hero {
-    height: 350px;
-    text-align: center;
-    padding: 100px 20px;
-    color: white;
-
-    /*
-       Multiple backgrounds:
-       1. Linear gradient
-       2. Cake image
-    */
-
-    background-image:
-        linear-gradient(
-            rgba(0,0,0,0.45),
-            rgba(0,0,0,0.45)
-        ),
-        url("file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg");
-
-    /* Background size */
-    background-size: cover, cover;
-
-    background-position: center, center;
-
-    background-repeat: no-repeat;
-}
-
-.hero h2 {
-    font-size: 40px;
-    margin: 0;
-}
-
-.hero p {
-    font-size: 20px;
-}
-
-
-.special-offer {
-
+  /* 2. BORDER IMAGE (inline SVG, so no border.png needed) */
+  .border-img-box {
     width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border: 25px solid transparent;
+    border-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><rect width='90' height='90' fill='%23ffc2d4'/><circle cx='15' cy='15' r='9' fill='%23d6336c'/><circle cx='45' cy='15' r='9' fill='%23ffffff'/><circle cx='75' cy='15' r='9' fill='%23d6336c'/><circle cx='15' cy='45' r='9' fill='%23ffffff'/><circle cx='75' cy='45' r='9' fill='%23ffffff'/><circle cx='15' cy='75' r='9' fill='%23d6336c'/><circle cx='45' cy='75' r='9' fill='%23ffffff'/><circle cx='75' cy='75' r='9' fill='%23d6336c'/></svg>") 30 round;
+  }
 
-    margin: 30px auto;
+  /* 7. NTH-CHILD() striped table + hover highlight */
+  table { width: 100%; border-collapse: collapse; }
+  th { background-color: #d6336c; color: #fff; padding: 12px; }
+  td { padding: 12px; text-align: center; }
+  #cakeTable tr:nth-child(odd)  { background-color: #f2f2f2; }
+  #cakeTable tr:nth-child(even) { background-color: #dbeeff; }
+  #cakeTable tr:hover           { background-color: #ffd966; }
 
+  /* 6. ADJACENT SIBLING SELECTOR (+) */
+  .itemName { font-weight: bold; cursor: pointer; }
+  .itemImg  { font-size: 36px; opacity: 0.2; transition: opacity 0.3s ease; }
+  .itemName:hover + .itemImg { opacity: 1; }
+
+  /* Form box */
+  form {
+    background-color: #fff;
+    max-width: 450px;
+    margin: 0 auto;
     padding: 25px;
-
-    text-align: center;
-
-    background-color: #fff0f5;
-
-    /*
-       Border Image
-    */
-
-    border: 20px solid transparent;
-
-    border-image:
-        url("file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg.jpg")
-        30 round;
-}
-
-.special-offer h2 {
-    color: #d6336c;
-}
-
-.products {
-    text-align: center;
-    padding: 30px;
-}
-
-.cake-name {
-    font-size: 20px;
-    font-weight: bold;
-    color: #d6336c;
-    cursor: pointer;
-}
-
-/*
-   The + selector selects the image
-   immediately after .cake-name.
-*/
-
-.cake-name + .cake-image {
-
-    opacity: 0.5;
-
-    transition: opacity 0.4s ease;
-}
-
-/*
-   When cake name is hovered,
-   the next image becomes fully visible.
-*/
-
-.cake-name:hover + .cake-image {
-
-    opacity: 1;
-}
-
-button {
-
-    background-color: #d6336c;
-
-    color: white;
-
-    border: none;
-
-    padding: 12px 20px;
-
-    margin-top: 10px;
-
-    border-radius: 25px;
-
-    cursor: pointer;
-}
-
-button:hover {
-
-    background-color: #a61e4d;
-}
-
-table {
-
-    width: 80%;
-
-    margin: 30px auto;
-
-    border-collapse: collapse;
-
-    background-color: white;
-}
-
-th {
-
-    background-color: #d6336c;
-
-    color: white;
-
-    padding: 12px;
-}
-
-td {
-
-    padding: 12px;
-
-    text-align: center;
-
-    border: 1px solid #ddd;
-}
-
-
-/*
-   Odd rows
-*/
-
-table tr:nth-child(odd) {
-
-    background-color: #ffe5ec;
-}
-
-
-/*
-   Even rows
-*/
-
-table tr:nth-child(even) {
-
-    background-color: white;
-}
-
-
-/*
-   Hover effect
-*/
-
-table tr:hover {
-
-    background-color: #ffe066;
-}
-
-.order-form {
-
-    width: 50%;
-
-    margin: 40px auto;
-
-    padding: 25px;
-
-    background-color: white;
-
     border-radius: 20px;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.order-form h2 {
-
-    text-align: center;
-
-    color: #d6336c;
-}
-
-.order-form input,
-.order-form select {
-
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  label { display: block; margin-top: 12px; font-weight: bold; }
+  input, select {
     width: 100%;
-
-    padding: 12px;
-
-    margin: 10px 0;
-
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
     border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+  }
 
-    border-radius: 10px;
-}
-
-
-/* :focus */
-
-.order-form input:focus {
-
-    border-color: #d6336c;
-
-    background-color: #fff0f5;
-
+  /* 5. PSEUDO-CLASSES: :required, :focus, :valid, :invalid */
+  input:required {
+    border: 3px solid blue;
+    background-color: lightyellow;
+  }
+  input:focus {
+    border: 3px solid red;
+    background-color: #e9ffe9;
     outline: none;
-}
+  }
+  input[type="email"]:invalid { color: red; }
+  input[type="email"]:valid   { color: blue; }
 
-
-/* :required */
-
-.order-form input:required {
-
-    border-left: 5px solid #ff8787;
-}
-
-
-/* :valid */
-
-.order-form input:valid {
-
-    border-color: green;
-}
-
-
-/* :invalid */
-
-.order-form input[type="email"]:invalid {
-
-    color: red;
-}
-
-
-footer {
-
+  button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
     background-color: #d6336c;
+    color: #fff;
+    font-size: 17px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+  button:hover { background-color: #a61e4d; }
 
-    color: white;
-
-    text-align: center;
-
-    padding: 15px;
-
+  /* 4. BACKGROUND-SIZE: contain (footer logo) */
+  footer {
     margin-top: 40px;
-}
-
-
-@media screen and (max-width: 768px) {
-
-    .cake-card {
-
-        width: 90%;
-
-        margin: 15px auto;
-
-        display: block;
-    }
-
-    .order-form {
-
-        width: 90%;
-    }
-
-    nav a {
-
-        display: block;
-
-        margin: 10px;
-    }
-
-    .hero h2 {
-
-        font-size: 28px;
-    }
-}
-
-
-@media screen and (max-width: 480px) {
-
-    header h1 {
-
-        font-size: 26px;
-    }
-
-    .hero {
-
-        height: 300px;
-
-        padding: 80px 15px;
-    }
-
-    .hero h2 {
-
-        font-size: 22px;
-    }
-
-    table {
-
-        width: 95%;
-    }
-}
-
+    padding: 30px 20px 30px 90px;
+    background-color: #4a2c2a;
+    color: #fff;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='50' width='60' height='35' rx='8' fill='%23ffc2d4'/><rect x='30' y='30' width='40' height='22' rx='6' fill='%23ff758c'/><rect x='48' y='12' width='4' height='18' fill='%23fff'/><circle cx='50' cy='10' r='4' fill='%23ffd966'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    background-size: contain;
+  }
 </style>
-
 </head>
-
 
 <body>
 
-
 <header>
-
-    <h1> Sweet Cake Shop</h1>
-
-    <nav>
-
-        <a href="#home">Home</a>
-
-        <a href="#cakes">Cakes</a>
-
-        <a href="#prices">Prices</a>
-
-        <a href="#order">Order Now</a>
-
-    </nav>
-
+  <h1>🎂 Sweet Delights</h1>
+  <p>Freshly baked cakes delivered to your doorstep</p>
 </header>
 
-<section class="hero" id="home">
+<nav>
+  <a href="#menu">Our Cakes</a>
+  <a href="#offer">Special Offer</a>
+  <a href="#order">Order Now</a>
+</nav>
 
-    <h2>
-        Delicious Cakes for Every Celebration!
-    </h2>
-
-    <p>
-        Fresh • Sweet • Beautifully Designed
-    </p>
-
-    <button>
-        Shop Now
-    </button>
-
+<section id="offer">
+  <div class="special">
+    <h2>Special Offer!</h2>
+    <p>Get <b>10% OFF</b> on your first online order.</p>
+  </div>
 </section>
 
-
-<section class="special-offer">
-
-    <h2> Special Offer!</h2>
-
-    <p>
-        Get 20% OFF on your first cake order.
-    </p>
-
-</section>
-
-
-<section class="products" id="cakes">
-
-    <h2>Our Delicious Cakes</h2>
-
-    <p>
-        Choose your favourite cake and make
-        your celebration special!
-    </p>
-
-
-    <!-- CHOCOLATE CAKE -->
-
-    <div class="cake-card">
-
-        <div class="cake-name">
-            Chocolate Cake
-        </div>
-
-        <img
-            class="cake-image"
-            src="file:///C:/Users/aksha/OneDrive/Pictures/cake2.jpg"
-            alt="Chocolate Cake"
-        >
-
-        <p>
-            Rich and creamy chocolate cake.
-        </p>
-
-        <p>
-            <b>Price: ₹500</b>
-        </p>
-
-        <button>
-            Add to Cart
-        </button>
-
-    </div>
-
-
-
-    <div class="cake-card">
-
-        <div class="cake-name">
-            Strawberry Cake
-        </div>
-
-        <img
-            class="cake-image"
-            src="file:///C:/Users/aksha/OneDrive/Pictures/cake3.jpg.jpg"
-            alt="Strawberry Cake"
-        >
-
-        <p>
-            Fresh strawberry cream cake.
-        </p>
-
-        <p>
-            <b>Price: ₹600</b>
-        </p>
-
-        <button>
-            Add to Cart
-        </button>
-
-    </div>
-
-
-    <!-- BLACK FOREST CAKE -->
-
-    <div class="cake-card">
-
-        <div class="cake-name">
-            Black Forest Cake
-        </div>
-
-        <img
-            class="cake-image"
-            src="file:///C:/Users/aksha/OneDrive/Pictures/cake1.jpg.jpg"
-            alt="Black Forest Cake"
-        >
-
-        <p>
-            Classic chocolate and cherry cake.
-        </p>
-
-        <p>
-            <b>Price: ₹700</b>
-        </p>
-
-        <button>
-            Add to Cart
-        </button>
-
-    </div>
-
-</section>
-
-<section id="prices">
-
-    <h2 style="text-align:center;">
-        Cake Price List
-    </h2>
-
-    <table>
-
-        <tr>
-
-            <th>Cake Name</th>
-
-            <th>Size</th>
-
-            <th>Price</th>
-
-        </tr>
-
-
-        <tr>
-
-            <td>Chocolate Cake</td>
-
-            <td>1 Kg</td>
-
-            <td>₹500</td>
-
-        </tr>
-
-
-        <tr>
-
-            <td>Strawberry Cake</td>
-
-            <td>1 Kg</td>
-
-            <td>₹600</td>
-
-        </tr>
-
-
-        <tr>
-
-            <td>Black Forest Cake</td>
-
-            <td>1 Kg</td>
-
-            <td>₹700</td>
-
-        </tr>
-
-
-        <tr>
-
-            <td>Vanilla Cake</td>
-
-            <td>1 Kg</td>
-
-            <td>₹450</td>
-
-        </tr>
-
+<section id="menu">
+  <h2>Our Cakes</h2>
+  <div class="border-img-box">
+    <p>Hover over a cake name to reveal its picture!</p>
+    <table id="cakeTable">
+      <tr><th>Cake</th><th>Picture</th><th>Price (₹)</th></tr>
+      <tr><td class="itemName">Chocolate Truffle</td><td class="itemImg">🍫</td><td>600</td></tr>
+      <tr><td class="itemName">Strawberry Delight</td><td class="itemImg">🍓</td><td>550</td></tr>
+      <tr><td class="itemName">Black Forest</td><td class="itemImg">🍒</td><td>650</td></tr>
+      <tr><td class="itemName">Pineapple Cream</td><td class="itemImg">🍍</td><td>500</td></tr>
+      <tr><td class="itemName">Red Velvet</td><td class="itemImg">❤️</td><td>750</td></tr>
     </table>
-
+  </div>
 </section>
 
+<section id="order">
+  <h2>Place Your Order</h2>
+  <form>
+    <label>Name (required)</label>
+    <input type="text" placeholder="Enter Name" required>
 
-<section class="order-form" id="order">
+    <label>Email</label>
+    <input type="email" placeholder="name@example.com">
 
-    <h2>
-        Order Your Cake
-    </h2>
+    <label>Phone</label>
+    <input type="text" placeholder="Mobile number" required>
 
-    <form>
+    <label>Choose Cake</label>
+    <select>
+      <option>Chocolate Truffle</option>
+      <option>Strawberry Delight</option>
+      <option>Black Forest</option>
+      <option>Pineapple Cream</option>
+      <option>Red Velvet</option>
+    </select>
 
-        <input
-            type="text"
-            placeholder="Enter Your Name"
-            required
-        >
-
-
-        <input
-            type="email"
-            placeholder="Enter Your Email"
-            required
-        >
-
-
-        <input
-            type="tel"
-            placeholder="Enter Your Phone Number"
-            required
-        >
-
-
-        <select required>
-
-            <option value="">
-                Select Your Cake
-            </option>
-
-            <option>
-                Chocolate Cake
-            </option>
-
-            <option>
-                Strawberry Cake
-            </option>
-
-            <option>
-                Black Forest Cake
-            </option>
-
-            <option>
-                Vanilla Cake
-            </option>
-
-        </select>
-
-
-        <input
-            type="number"
-            placeholder="Quantity"
-            min="1"
-            required
-        >
-
-
-        <button type="submit">
-            Place Order
-        </button>
-
-    </form>
-
+    <button type="submit">Order Now</button>
+  </form>
 </section>
 
 <footer>
-
-    <p>
-        © 2026 Sweet Cake Shop |
-        Fresh Cakes Made With Love
-    </p>
-
+  <p>© 2026 Sweet Delights Cake Shop | Open daily 9 AM - 9 PM</p>
 </footer>
 
-
 </body>
-
 </html>
